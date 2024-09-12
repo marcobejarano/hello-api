@@ -86,6 +86,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            api
+            artifacts/api
             LICENSE
             README.md

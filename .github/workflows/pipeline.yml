@@ -81,12 +81,17 @@ jobs:
         with:
           name: api
 
-      - name: Create Tag
+      - name: Configure Git User
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+        
+      - name: Create Tag
+        run: |
           git tag v1.0.0
           git push origin v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2

@@ -6,14 +6,33 @@ on:
       - main
 
 jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.23
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: go mod download
+
+      - name: Run Test
+        run: go ./...
+
   build:
     name: Build App
     runs-on: ubuntu-latest
+    needs: test
     steps:
-      - name: Set up Go 1.x.y
+      - name: Set up Go 1.x
         uses: actions/setup-go@v5
         with:
-          go-version: ^1.23.1
+          go-version: ^1.23
 
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4

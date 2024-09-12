@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v.*.*.*'
 
 jobs:
   test:
@@ -72,6 +74,7 @@ jobs:
     name: Release
     needs: build
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Check Out Code
         uses: actions/checkout@v4
@@ -80,16 +83,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: api
-
-      - name: Configure Git User
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-        
-      - name: Create Tag
-        run: |
-          git tag v1.0.1
-          git push origin v1.0.1
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2

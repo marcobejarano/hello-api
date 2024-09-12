@@ -88,8 +88,8 @@ jobs:
         
       - name: Create Tag
         run: |
-          git tag v1.0.0
-          git push origin v1.0.0
+          git tag v1.0.1
+          git push origin v1.0.1
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2

@@ -1,6 +1,9 @@
 name: CI Checks
 
-on: push
+on:
+  push:
+    tags:
+      - 'v*.*.*'
     
 jobs:
   test:
@@ -32,9 +35,6 @@ jobs:
           mkdir reports
           cp cover.html reports/.
 
-      - name: List Files in Reports Directory
-        run: ls -R reports  # Lists all files in the 'reports' directory
-
       - name: Archive Reports
         uses: actions/upload-artifact@v4
         with:
@@ -62,9 +62,6 @@ jobs:
           mkdir artifacts
           cp api artifacts/.
 
-      - name: List Files in Artifacts Directory
-        run: ls -R artifacts
-
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
@@ -84,13 +81,10 @@ jobs:
         with:
           name: api
 
-      - name: List Files in Current Directory
-        run: ls -R
-
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            api/api
+            api
+            LICENSE
             README.md

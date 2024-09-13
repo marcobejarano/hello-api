@@ -105,7 +105,7 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: http://projects/686484887266/locations/global/workloadIdentityPools/my-pool/
+          workload_identity_provider: projects/686484887266/locations/global/workloadIdentityPools/my-pool/providers/GitHubProvider
           service_account: 'hello-api@the-kubernetes-book-399002.iam.gserviceaccount.com'
 
       - name: Set Up Cloud SDK
@@ -122,7 +122,7 @@ jobs:
             --runtime=go123 \
             --trigger-http \
             --allow-unauthenticated \
-            --region=us-central1
+            --region=us-central1-c
 
       - name: Test Deploy Function
         run: |

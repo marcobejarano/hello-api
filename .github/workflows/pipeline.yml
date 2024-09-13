@@ -87,7 +87,6 @@ jobs:
           files: |
             api
             LICENSE
-            README.md
 
   deploy-function:
     name: Deploy FaaS

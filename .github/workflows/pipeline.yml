@@ -86,7 +86,6 @@ jobs:
         with:
           files: |
             api
-            LICENSE
             README.md
 
   deploy-function:

@@ -105,7 +105,7 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: projects/686484887266/locations/global/workloadIdentityPools/my-pool/providers/GitHubProvider
+          workload_identity_provider: projects/686484887266/locations/global/workloadIdentityPools/my-pool
           service_account: 'hello-api@the-kubernetes-book-399002.iam.gserviceaccount.com'
 
       - name: Set Up Cloud SDK
